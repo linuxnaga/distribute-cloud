@@ -8,6 +8,11 @@ import FirewallLab from './FirewallLab.jsx';
 import ServicePolicyLab from './ServicePolicyLab.jsx';
 import ApiDiscoveryLab from './ApiDiscoveryLab.jsx';
 import SyntheticLab from './SyntheticLab.jsx';
+import RbacLab from './RbacLab.jsx';
+import GslbLab from './GslbLab.jsx';
+import MtlsLab from './MtlsLab.jsx';
+import MaliciousUserLab from './MaliciousUserLab.jsx';
+import CdnLab from './CdnLab.jsx';
 
 export const LABS = {
   site: { label: 'Site & Tunnel Registration', C: SiteLab },
@@ -20,4 +25,9 @@ export const LABS = {
   policy: { label: 'Service Policy Builder', C: ServicePolicyLab },
   api: { label: 'API Discovery & OAS', C: ApiDiscoveryLab },
   synthetic: { label: 'Synthetic Monitoring', C: SyntheticLab },
+  rbac: { label: 'Namespace RBAC', C: RbacLab },
+  gslb: { label: 'DNS Load Balancing (GSLB)', C: GslbLab },
+  mtls: { label: 'mTLS & Client Certs', C: MtlsLab },
+  mud: { label: 'Malicious User Detection', C: MaliciousUserLab },
+  cdn: { label: 'CDN & Caching', C: CdnLab },
 };
