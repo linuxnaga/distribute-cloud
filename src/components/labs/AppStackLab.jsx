@@ -83,7 +83,7 @@ function DeployTab({ as, setAs, sim, award, emit, onNext }) {
   return (
     <div className="space-y-3">
       <FastTrack need={['aws', 'onprem'].filter((s) => sel.includes(s))} />
-      <Field label="Virtual Site · select targets by label" hint="Every site the selector matches receives the Deployment. REs can run vK8s workloads too.">
+      <Field group label="Virtual Site · select targets by label" hint="Every site the selector matches receives the Deployment. REs can run vK8s workloads too.">
         <div className="grid gap-1.5 sm:grid-cols-2">
           {TARGETS.map((t) => (
             <label key={t.id} className={`flex cursor-pointer items-start gap-2 rounded-md border p-2 text-xs ${sel.includes(t.id) ? 'border-purple-400/60 bg-purple-500/10' : 'border-line'} ${available(t) ? '' : 'opacity-60'}`}>

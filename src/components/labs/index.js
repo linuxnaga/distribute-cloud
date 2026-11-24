@@ -3,6 +3,11 @@ import LoadBalancerLab from './LoadBalancerLab.jsx';
 import McnLab from './McnLab.jsx';
 import AttackLab from './AttackLab.jsx';
 import AppStackLab from './AppStackLab.jsx';
+import GcpSiteLab from './GcpSiteLab.jsx';
+import FirewallLab from './FirewallLab.jsx';
+import ServicePolicyLab from './ServicePolicyLab.jsx';
+import ApiDiscoveryLab from './ApiDiscoveryLab.jsx';
+import SyntheticLab from './SyntheticLab.jsx';
 
 export const LABS = {
   site: { label: 'Site & Tunnel Registration', C: SiteLab },
@@ -10,4 +15,9 @@ export const LABS = {
   mcn: { label: 'MCN: Overlap & Mesh Groups', C: McnLab },
   attack: { label: 'Security & Traffic Burst', C: AttackLab },
   appstack: { label: 'vK8s, RELT & SIEM', C: AppStackLab },
+  gcp: { label: 'GCP Cloud Site Deploy', C: GcpSiteLab },
+  firewall: { label: 'Network Connector & Firewall', C: FirewallLab },
+  policy: { label: 'Service Policy Builder', C: ServicePolicyLab },
+  api: { label: 'API Discovery & OAS', C: ApiDiscoveryLab },
+  synthetic: { label: 'Synthetic Monitoring', C: SyntheticLab },
 };
