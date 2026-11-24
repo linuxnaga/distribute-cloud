@@ -1,0 +1,203 @@
+// Module definitions, architecture component reference and knowledge checks.
+// Content is aligned to the concepts in the public F5 Distributed Cloud Services docs.
+
+export const MODULES = [
+  {
+    id: 'm1',
+    num: 1,
+    title: 'Platform Architecture & Core Components',
+    short: 'Platform Architecture',
+    icon: 'Network',
+    color: '#06b6d4',
+    summary:
+      'F5 XC splits the platform into a centralized SaaS control and management plane and a distributed data plane. The data plane is made of F5-operated Regional Edges (REs) on the Global Private Network and Customer Edges (CEs) that you deploy into clouds and data centers. A CE registers with a token, then automatically builds redundant IPsec (SSL fallback) tunnels to the two nearest REs.',
+    concepts: [
+      { term: 'SaaS Control Plane', text: 'The F5 XC Console and Global Controller. Holds config, policy and identity, pushes intent to every site. Carries no user traffic.' },
+      { term: 'Regional Edge (RE)', text: 'F5-owned PoPs on the Global Private Network. Advertise Anycast VIPs, terminate user traffic, run WAAP and DDoS scrubbing.' },
+      { term: 'Customer Edge (CE)', text: 'A site you run: VM, cloud instance, K8s or appliance. Single node, or a 3-node cluster for HA. Connects to two REs.' },
+      { term: 'Site & Virtual Site', text: 'A Site is one CE deployment. A Virtual Site is a label selector that groups many sites (and REs) as one deployment target.' },
+      { term: 'Namespace', text: 'Isolation boundary for config objects. "system" holds sites & infra, "shared" holds reusable objects, app namespaces hold LBs & pools.' },
+      { term: 'Auto Tunnels', text: 'After registration approval, each CE builds IPsec tunnels (SSL fallback if UDP 4500 is blocked) to its two closest REs. No manual VPN config.' },
+    ],
+    focus: ['console', 're-ash', 're-fra', 'ce-aws', 'ce-onprem'],
+    defaultFlows: ['ns'],
+    labs: [{ id: 'site', label: 'Site & Tunnel Registration' }],
+  },
+  {
+    id: 'm2',
+    num: 2,
+    title: 'Multi-Cloud Networking (MCN) & Distributed Load Balancing',
+    short: 'MCN & Distributed LB',
+    icon: 'Waypoints',
+    color: '#10b981',
+    summary:
+      'Connect AWS, Azure, GCP and on-prem data centers through one fabric. Distributed L7 HTTP and L4 TCP load balancers publish apps anywhere: on the RE Anycast network for internet users, or on a CE for private consumers. Because the proxy works at the application layer, overlapping IP ranges stop being a routing problem. Site Mesh Groups and DC Cluster Groups add direct CE-to-CE data paths.',
+    concepts: [
+      { term: 'HTTP Load Balancer', text: 'Distributed L7 proxy. Advertise on Internet (RE Anycast VIP), on a Site or a Virtual Site. Carries WAF, bot, API and service policies.' },
+      { term: 'Origin Pool', text: 'Where traffic goes. Origins can be public IP/DNS, or private "IP/DNS on given Sites" reached through a CE, with no public exposure.' },
+      { term: 'Overlapping IPs', text: 'Two sites using 10.1.0.0/16 cannot be routed at L3. An L4/L7 LB proxies by service name and site, so the overlap never meets.' },
+      { term: 'North-South vs East-West', text: 'N-S: internet user → RE → tunnel → CE → origin. E-W: service in one site → its CE → fabric → CE → service in another site.' },
+      { term: 'Site Mesh Group (SMG)', text: 'Direct IPsec/SSL tunnels between CE sites (full mesh or hub-spoke) for site-to-site traffic without hairpinning through REs.' },
+      { term: 'DC Cluster Group (DCG)', text: 'CE sites with private, high-bandwidth connectivity (same DC or private WAN) linked by unencrypted IP-in-IP/SRv6 for performance.' },
+    ],
+    focus: ['re-ash', 'hlb', 'pool', 'ce-aws', 'ce-onprem', 'svc-a', 'svc-b'],
+    defaultFlows: ['ns', 'ew'],
+    labs: [
+      { id: 'lb', label: 'HTTP LB & Origin Pool Wizard' },
+      { id: 'mcn', label: 'MCN: Overlap & Mesh Groups' },
+    ],
+  },
+  {
+    id: 'm3',
+    num: 3,
+    title: 'Web App & API Protection (WAAP), DDoS & Bot Defense',
+    short: 'WAAP, DDoS & Bots',
+    icon: 'ShieldCheck',
+    color: '#f59e0b',
+    summary:
+      'Security attaches to the HTTP Load Balancer, so the same policy runs on every RE and CE where the app is advertised. Attacks are dropped at the Regional Edge before they ever reach your tunnels or origins. App Firewall enforces signatures and threat campaigns, Bot Defense separates humans from automation, L3/L4 DDoS is absorbed by the global network, L7 DDoS is rate-limited and challenged, and API Discovery finds shadow endpoints that are not in your OpenAPI schema.',
+    concepts: [
+      { term: 'App Firewall', text: 'Signature-based WAF with attack types, accuracy levels and threat campaigns. Monitoring mode only logs; Blocking mode drops.' },
+      { term: 'Bot Defense', text: 'Injects telemetry JavaScript, scores clients, and blocks, redirects or flags automated traffic like credential stuffing.' },
+      { term: 'DDoS Mitigation', text: 'L3/L4 floods are scrubbed by the RE backbone automatically. L7 floods are handled with rate limits, JS/captcha challenges and auto-mitigation.' },
+      { term: 'API Discovery & OAS', text: 'Learns endpoints from live traffic. Upload an OpenAPI spec to enforce it; calls to undocumented "shadow" endpoints are flagged or blocked.' },
+      { term: 'Service Policy', text: 'Ordered allow/deny rules on IP prefix, ASN, geo, headers, methods and paths. Great for allow-lists, but broad denies hurt real users.' },
+      { term: 'Malicious User Detection', text: 'Behavioral scoring across WAF, bot and rate events per user, with progressive mitigation actions.' },
+    ],
+    focus: ['users', 'attackers', 're-ash', 'hlb', 'policy', 'pool'],
+    defaultFlows: ['ns', 'attack'],
+    labs: [{ id: 'attack', label: 'Security & Traffic Burst Simulation' }],
+  },
+  {
+    id: 'm4',
+    num: 4,
+    title: 'Distributed Application Management (App Stack) & Observability',
+    short: 'App Stack & Observability',
+    icon: 'Boxes',
+    color: '#a855f7',
+    summary:
+      'App Stack turns CE sites into a managed Kubernetes compute fabric. Virtual K8s (vK8s) gives you one Kubernetes API that spans many sites and REs, selected by a Virtual Site, so one deployment lands on every edge. Every LB and workload emits RELT telemetry (Requests, Errors, Latency, Throughput) that feeds the Service Graph, alert policies and your SIEM through Global Log Receivers.',
+    concepts: [
+      { term: 'App Stack Site', text: 'A CE that also runs managed K8s for your containers, so compute lives next to users and data.' },
+      { term: 'vK8s', text: 'Virtual Kubernetes per namespace. kubectl against one API; workloads are scheduled to every site in the chosen Virtual Site.' },
+      { term: 'RELT Metrics', text: 'Requests per second, Error rate, Latency (p50/p95) and Throughput for every LB, origin and service edge.' },
+      { term: 'Service Graph', text: 'Live topology of services and the traffic between them, colored by health so hotspots stand out.' },
+      { term: 'Alert Policies', text: 'Thresholds on metrics and security events, routed to receivers like Slack, PagerDuty, email or webhooks.' },
+      { term: 'Global Log Receiver', text: 'Streams request, security and audit logs to Splunk, Datadog, Azure Sentinel, S3 and other SIEM or data lake targets.' },
+    ],
+    focus: ['console', 'ce-azure', 'vk8s', 'ce-aws', 'ce-onprem', 're-sin'],
+    defaultFlows: ['ns', 'ew'],
+    labs: [{ id: 'appstack', label: 'vK8s Deploy, RELT & SIEM' }],
+  },
+];
+
+export const MODULE_BY_ID = Object.fromEntries(MODULES.map((m) => [m.id, m]));
+
+// Inspector card content for every clickable node on the flow canvas.
+export const COMPONENTS = {
+  console: {
+    name: 'SaaS Control & Management Plane',
+    kind: 'Control Plane',
+    role: 'The F5 XC Console and Global Controller. Stores tenant config, identity, policy and site lifecycle, and pushes desired state to every RE and CE.',
+    routing: 'Never in the user data path. Sites keep forwarding with their last known config even if the control channel is briefly lost.',
+    metrics: [['Managed sites', 'sites'], ['Config pushes / min', 42], ['API latency', '38 ms']],
+  },
+  users: {
+    name: 'End Users',
+    kind: 'Client',
+    role: 'Browsers and API clients resolving the app FQDN to the RE Anycast VIP.',
+    routing: 'BGP Anycast steers each user to the nearest healthy RE PoP, so the first hop is always close.',
+    metrics: [['Active sessions', 1840], ['Geo spread', '27 countries'], ['TLS 1.3 share', '96%']],
+  },
+  attackers: {
+    name: 'Threat Actors & Bots',
+    kind: 'Adversary',
+    role: 'Source of SQL injection, credential stuffing, L7 floods and shadow API probes in Module 3.',
+    routing: 'Arrive at the same Anycast VIP as real users. Inspection at the RE decides who is dropped.',
+    metrics: [['Botnet size', '3,200 IPs'], ['Peak rate', '48k rps'], ['Top ASN', 'AS-HOSTING-X']],
+  },
+  're-ash': {
+    name: 'Regional Edge PoP · Ashburn',
+    kind: 'Regional Edge (RE)',
+    role: 'F5-operated PoP on the Global Private Network. Terminates TLS for Anycast VIPs, runs the distributed HTTP LB, WAAP and DDoS scrubbing.',
+    routing: 'Receives users via Anycast, then forwards over the private backbone or the IPsec/SSL tunnel to the CE that hosts the origin.',
+    metrics: [['Edge capacity', '12 Tbps'], ['Tunnels terminated', 'tunnels'], ['p50 RTT to users', '9 ms']],
+  },
+  're-fra': {
+    name: 'Regional Edge PoP · Frankfurt',
+    kind: 'Regional Edge (RE)',
+    role: 'Central EMEA PoP. Second tunnel endpoint for the AWS site and primary for the Azure and On-Prem sites.',
+    routing: 'Tunnels are active-active. If one RE fails, traffic shifts to the surviving tunnel without a config change. Traffic that enters at Ashburn crosses the private backbone to reach sites homed here.',
+    metrics: [['Edge capacity', '10 Tbps'], ['Tunnels terminated', 'tunnels'], ['Backbone RTT to ASH', '78 ms']],
+  },
+  're-sin': {
+    name: 'Regional Edge PoP · Singapore',
+    kind: 'Regional Edge (RE)',
+    role: 'APAC PoP and second tunnel endpoint for the Azure and On-Prem sites. Can also run vK8s workloads directly on the RE when a Virtual Site selects REs.',
+    routing: 'Serves APAC users from the closest point and reaches origins over the private backbone.',
+    metrics: [['Edge capacity', '8 Tbps'], ['vK8s pods', 'pods'], ['p50 RTT to users', '11 ms']],
+  },
+  hlb: {
+    name: 'HTTP Load Balancer',
+    kind: 'Distributed L7 Proxy',
+    role: 'The app front door. Holds the domain, TLS cert, routes, and attaches App Firewall, Bot Defense, API protection and Service Policies.',
+    routing: 'Advertised on the RE Anycast network (Internet) or on a CE / Virtual Site for private VIPs. Routes to Origin Pools by path, header or weight.',
+    metrics: [['Requests/s', 'rps'], ['Errors', 'err'], ['p95 latency', 'lat']],
+  },
+  policy: {
+    name: 'WAAP & Service Policy Engine',
+    kind: 'Security Enforcement',
+    role: 'App Firewall, Bot Defense, L7 DDoS, API protection and ordered Service Policy rules, enforced inline on every RE that advertises the LB.',
+    routing: 'Evaluates each request before it is proxied. Dropped requests never enter the tunnel or touch the origin.',
+    metrics: [['WAF mode', 'waf'], ['Bot Defense', 'bot'], ['Blocked (last burst)', 'blocked']],
+  },
+  pool: {
+    name: 'Origin Pool',
+    kind: 'Backend Pool',
+    role: 'Defines origin servers, port, health checks and LB algorithm. Private origins are reached through a CE using "IP address of Origin Server on given Sites".',
+    routing: 'The RE picks a healthy origin, then sends traffic through the tunnel to the CE, which forwards on its inside network. The origin needs no public IP.',
+    metrics: [['Healthy origins', 'origins'], ['Algorithm', 'Round Robin'], ['Health check', 'HTTP /healthz']],
+  },
+  'ce-aws': {
+    name: 'Customer Edge · AWS VPC (3-node cluster)',
+    kind: 'Customer Edge (CE)',
+    role: 'Three CE nodes across AZs in us-east-1. Provides the secure on-ramp into the VPC and local L3–L7 services.',
+    routing: 'Outside interface builds tunnels to its two nearest REs (Ashburn and Frankfurt); inside interface reaches private subnets (10.1.0.0/16).',
+    metrics: [['Status', 'site:aws'], ['Cluster nodes', '3 / 3'], ['Tunnels', 'tun:aws']],
+  },
+  'ce-azure': {
+    name: 'Customer Edge · Azure VNet (App Stack)',
+    kind: 'Customer Edge (CE) · App Stack',
+    role: 'An App Stack site in West Europe that also runs managed Kubernetes for vK8s workloads.',
+    routing: 'Tunnels to Frankfurt and Singapore. Pods are reachable by other sites through distributed LBs.',
+    metrics: [['Status', 'site:azure'], ['K8s nodes', '3'], ['Tunnels', 'tun:azure']],
+  },
+  'ce-onprem': {
+    name: 'Customer Edge · On-Prem Data Center',
+    kind: 'Customer Edge (CE)',
+    role: 'Single-node CE on VMware in the corporate DC. Connects legacy apps to the multi-cloud fabric.',
+    routing: 'Builds IPsec to its two nearest REs (Frankfurt and Singapore), or SSL if UDP 4500 is blocked by the corporate firewall. Inside network also uses 10.1.0.0/16.',
+    metrics: [['Status', 'site:onprem'], ['Hypervisor', 'VMware ESXi'], ['Tunnels', 'tun:onprem']],
+  },
+  'svc-a': {
+    name: 'Service A · checkout-api (AWS)',
+    kind: 'Workload',
+    role: 'Microservice in the AWS VPC that calls the on-prem inventory service.',
+    routing: 'Calls a private VIP on the AWS CE. The CE proxies across the fabric to the on-prem origin: East-West traffic.',
+    metrics: [['Calls/s to Service B', 'ewrps'], ['Pod IP', '10.1.4.17'], ['Language', 'Go']],
+  },
+  'svc-b': {
+    name: 'Service B · inventory-db-api (On-Prem)',
+    kind: 'Workload',
+    role: 'Legacy inventory API in the corporate DC. Origin for both the public app and Service A.',
+    routing: 'Only reachable on the DC inside network. Exposed through the on-prem CE, never directly to the internet.',
+    metrics: [['Host IP', '10.1.4.17 (overlaps AWS!)'], ['p95 latency', '24 ms'], ['Runtime', 'JVM']],
+  },
+  vk8s: {
+    name: 'vK8s Workload · inventory-cache',
+    kind: 'Virtual Kubernetes',
+    role: 'A Deployment created once through the vK8s API and scheduled to every site in the selected Virtual Site.',
+    routing: 'Each replica serves local users from its edge. Exposed with an HTTP LB whose origin is the vK8s service.',
+    metrics: [['Replicas', 'pods'], ['Sites', 'vsites'], ['Image', 'inventory-cache:2.4']],
+  },
+};
