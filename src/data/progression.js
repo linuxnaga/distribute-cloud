@@ -4,9 +4,9 @@
 export const RANKS = [
   { level: 1, title: 'Edge Explorer', minXp: 0 },
   { level: 2, title: 'Tunnel Technician', minXp: 250 },
-  { level: 3, title: 'Mesh Weaver', minXp: 650 },
-  { level: 4, title: 'Edge Sentinel', minXp: 1200 },
-  { level: 5, title: 'Distributed Cloud Architect', minXp: 1850 },
+  { level: 3, title: 'Mesh Weaver', minXp: 700 },
+  { level: 4, title: 'Edge Sentinel', minXp: 1300 },
+  { level: 5, title: 'Distributed Cloud Architect', minXp: 2050 },
 ];
 
 export const BADGES = [
@@ -58,6 +58,7 @@ export const TASKS = [
   { id: 'm1.site.onprem', module: 'm1', kind: 'lab', xp: 60, label: 'Approve the On-Prem CE site registration' },
   { id: 'm1.tunnels', module: 'm1', kind: 'lab', xp: 40, label: 'Bring all CE→RE tunnels online' },
   { id: 'm1.gcp', module: 'm1', kind: 'lab', xp: 60, label: 'Deploy an HA GCP cloud CE site' },
+  { id: 'm1.rbac', module: 'm1', kind: 'lab', xp: 60, label: 'Pass a least-privilege namespace access review' },
 
   // Module 2
   { id: 'm2.flow.ew', module: 'm2', kind: 'explore', xp: 20, label: 'Watch an East-West flow from AWS to On-Prem' },
@@ -69,6 +70,7 @@ export const TASKS = [
   { id: 'm2.mesh', module: 'm2', kind: 'lab', xp: 50, label: 'Classify all SMG vs DCG scenarios correctly' },
   { id: 'm2.connector', module: 'm2', kind: 'lab', xp: 40, label: 'Pick the right Network Connector for VPC egress' },
   { id: 'm2.fw', module: 'm2', kind: 'lab', xp: 60, label: 'Build a least-privilege Network Firewall policy' },
+  { id: 'm2.gslb', module: 'm2', kind: 'lab', xp: 60, label: 'Route DNS to the nearest healthy region with fast failover' },
 
   // Module 3
   { id: 'm3.layer.waap', module: 'm3', kind: 'explore', xp: 20, label: 'Watch attack packets die at the RE WAAP shield' },
@@ -79,6 +81,8 @@ export const TASKS = [
   { id: 'm3.clean', module: 'm3', kind: 'lab', xp: 60, label: 'Run a burst with zero leaks and ≥95% legit success' },
   { id: 'm3.policy', module: 'm3', kind: 'lab', xp: 60, label: 'Build a Service Policy that passes every test request' },
   { id: 'm3.oas', module: 'm3', kind: 'lab', xp: 60, label: 'Triage shadow APIs and enforce the OAS spec' },
+  { id: 'm3.mtls', module: 'm3', kind: 'lab', xp: 60, label: 'Lock a partner API down with mTLS' },
+  { id: 'm3.mud', module: 'm3', kind: 'lab', xp: 60, label: 'Tune Malicious User Detection with zero false positives' },
 
   // Module 4
   { id: 'm4.flow.relt', module: 'm4', kind: 'explore', xp: 20, label: 'Spot a faulty edge on the canvas RELT overlay' },
@@ -87,6 +91,7 @@ export const TASKS = [
   { id: 'm4.diagnose', module: 'm4', kind: 'lab', xp: 50, label: 'Diagnose the latency fault from RELT metrics' },
   { id: 'm4.siem', module: 'm4', kind: 'lab', xp: 40, label: 'Stream an alert to your SIEM' },
   { id: 'm4.synth', module: 'm4', kind: 'lab', xp: 60, label: 'Find and fix a regional outage with Synthetic Monitoring' },
+  { id: 'm4.cdn', module: 'm4', kind: 'lab', xp: 60, label: 'Cache at the edge with no stale prices or data leaks' },
 
   // Knowledge checks: 5 questions × 20 XP per module (ids generated in quizzes.js)
   ...['m1', 'm2', 'm3', 'm4'].flatMap((m) =>

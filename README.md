@@ -47,6 +47,11 @@ Each module has key concepts, an objectives checklist, a split-screen workbench 
 - Service Policy Builder (Module 3): order allow/deny rules so /admin stays corporate-only, anonymizers and sanctioned countries are dropped, and shoppers still get through
 - API Discovery & OAS (Module 3): learn endpoints from traffic, upload a spec, triage four shadow APIs, and enforce fall-through blocking
 - Synthetic Monitoring (Module 4): probe the app from five regions, catch a market-specific 403 and trace it to a Service Policy rule
+- Namespace RBAC (Module 1): replace pilot-era Admin grants with one least-privilege role and namespace per person
+- DNS Load Balancing / GSLB (Module 2): pick policy, health checks and TTL so shoppers reach the nearest healthy region and fail over fast
+- mTLS & Client Certs (Module 3): require partner certificates from one CA and forward client identity to the origin
+- Malicious User Detection (Module 3): choose user identification and per-threat-level mitigations with zero false positives
+- CDN & Caching (Module 4): set per-path TTLs for high offload without stale prices or cached personal data
 
 **Missions**
 1. Zero-Trust Multi-Cloud App Delivery: publish a private on-prem app globally without a public IP
@@ -65,7 +70,7 @@ src/
     HUD.jsx, SkillTree.jsx, ModuleView.jsx, MissionView.jsx, Workbench.jsx
     FlowCanvas.jsx        interactive SVG architecture + packet animation
     Inspector.jsx, Quiz.jsx, Toasts.jsx, ui.jsx
-    labs/                 the ten console lab simulators
+    labs/                 the fifteen console lab simulators
 ```
 
 ## Disclaimer

@@ -24,6 +24,7 @@ export const MODULES = [
     labs: [
       { id: 'site', label: 'Site & Tunnel Registration' },
       { id: 'gcp', label: 'GCP Cloud Site Deploy' },
+      { id: 'rbac', label: 'Namespace RBAC' },
     ],
   },
   {
@@ -50,6 +51,7 @@ export const MODULES = [
       { id: 'lb', label: 'HTTP LB & Origin Pool Wizard' },
       { id: 'mcn', label: 'MCN: Overlap & Mesh Groups' },
       { id: 'firewall', label: 'Network Connector & Firewall' },
+      { id: 'gslb', label: 'DNS Load Balancing (GSLB)' },
     ],
   },
   {
@@ -75,6 +77,8 @@ export const MODULES = [
       { id: 'attack', label: 'Security & Traffic Burst Simulation' },
       { id: 'policy', label: 'Service Policy Builder' },
       { id: 'api', label: 'API Discovery & OAS' },
+      { id: 'mtls', label: 'mTLS & Client Certs' },
+      { id: 'mud', label: 'Malicious User Detection' },
     ],
   },
   {
@@ -100,6 +104,7 @@ export const MODULES = [
     labs: [
       { id: 'appstack', label: 'vK8s Deploy, RELT & SIEM' },
       { id: 'synthetic', label: 'Synthetic Monitoring' },
+      { id: 'cdn', label: 'CDN & Caching' },
     ],
   },
 ];
