@@ -21,7 +21,10 @@ export const MODULES = [
     ],
     focus: ['console', 're-ash', 're-fra', 'ce-aws', 'ce-onprem'],
     defaultFlows: ['ns'],
-    labs: [{ id: 'site', label: 'Site & Tunnel Registration' }],
+    labs: [
+      { id: 'site', label: 'Site & Tunnel Registration' },
+      { id: 'gcp', label: 'GCP Cloud Site Deploy' },
+    ],
   },
   {
     id: 'm2',
@@ -38,6 +41,7 @@ export const MODULES = [
       { term: 'Overlapping IPs', text: 'Two sites using 10.1.0.0/16 cannot be routed at L3. An L4/L7 LB proxies by service name and site, so the overlap never meets.' },
       { term: 'North-South vs East-West', text: 'N-S: internet user → RE → tunnel → CE → origin. E-W: service in one site → its CE → fabric → CE → service in another site.' },
       { term: 'Site Mesh Group (SMG)', text: 'Direct IPsec/SSL tunnels between CE sites (full mesh or hub-spoke) for site-to-site traffic without hairpinning through REs.' },
+      { term: 'Network Connector & Firewall', text: 'Connectors join a CE inside network to outside (direct, SNAT or forward proxy). Network Firewall policies apply ordered L3/L4 rules between segments.' },
       { term: 'DC Cluster Group (DCG)', text: 'CE sites with private, high-bandwidth connectivity (same DC or private WAN) linked by unencrypted IP-in-IP/SRv6 for performance.' },
     ],
     focus: ['re-ash', 'hlb', 'pool', 'ce-aws', 'ce-onprem', 'svc-a', 'svc-b'],
@@ -45,6 +49,7 @@ export const MODULES = [
     labs: [
       { id: 'lb', label: 'HTTP LB & Origin Pool Wizard' },
       { id: 'mcn', label: 'MCN: Overlap & Mesh Groups' },
+      { id: 'firewall', label: 'Network Connector & Firewall' },
     ],
   },
   {
@@ -66,7 +71,11 @@ export const MODULES = [
     ],
     focus: ['users', 'attackers', 're-ash', 'hlb', 'policy', 'pool'],
     defaultFlows: ['ns', 'attack'],
-    labs: [{ id: 'attack', label: 'Security & Traffic Burst Simulation' }],
+    labs: [
+      { id: 'attack', label: 'Security & Traffic Burst Simulation' },
+      { id: 'policy', label: 'Service Policy Builder' },
+      { id: 'api', label: 'API Discovery & OAS' },
+    ],
   },
   {
     id: 'm4',
@@ -83,11 +92,15 @@ export const MODULES = [
       { term: 'RELT Metrics', text: 'Requests per second, Error rate, Latency (p50/p95) and Throughput for every LB, origin and service edge.' },
       { term: 'Service Graph', text: 'Live topology of services and the traffic between them, colored by health so hotspots stand out.' },
       { term: 'Alert Policies', text: 'Thresholds on metrics and security events, routed to receivers like Slack, PagerDuty, email or webhooks.' },
+      { term: 'Synthetic Monitoring', text: 'Scheduled HTTP and DNS probes from F5 locations worldwide that catch regional outages before users report them.' },
       { term: 'Global Log Receiver', text: 'Streams request, security and audit logs to Splunk, Datadog, Azure Sentinel, S3 and other SIEM or data lake targets.' },
     ],
     focus: ['console', 'ce-azure', 'vk8s', 'ce-aws', 'ce-onprem', 're-sin'],
     defaultFlows: ['ns', 'ew'],
-    labs: [{ id: 'appstack', label: 'vK8s Deploy, RELT & SIEM' }],
+    labs: [
+      { id: 'appstack', label: 'vK8s Deploy, RELT & SIEM' },
+      { id: 'synthetic', label: 'Synthetic Monitoring' },
+    ],
   },
 ];
 

@@ -42,6 +42,11 @@ Each module has key concepts, an objectives checklist, a split-screen workbench 
 - MCN: resolve overlapping CIDRs and classify SMG vs DCG scenarios
 - Security & Traffic Burst: launch SQLi, credential stuffing, L7 DDoS and shadow-API traffic against your App Firewall, Bot Defense, DDoS, API and Service Policy settings
 - vK8s, RELT & SIEM: deploy to a virtual site, inject a fault, find the culprit from RELT metrics, fire an alert to your SIEM
+- GCP Cloud Site Deploy (Module 1): size a production GCP VPC site (credentials, region, two-interface gateway, 3 nodes across 3 zones) and watch it auto-register
+- Network Connector & Firewall (Module 2): pick the right egress connector, then build an ordered, least-privilege L3/L4 firewall policy that passes 5 test flows
+- Service Policy Builder (Module 3): order allow/deny rules so /admin stays corporate-only, anonymizers and sanctioned countries are dropped, and shoppers still get through
+- API Discovery & OAS (Module 3): learn endpoints from traffic, upload a spec, triage four shadow APIs, and enforce fall-through blocking
+- Synthetic Monitoring (Module 4): probe the app from five regions, catch a market-specific 403 and trace it to a Service Policy rule
 
 **Missions**
 1. Zero-Trust Multi-Cloud App Delivery: publish a private on-prem app globally without a public IP
@@ -60,7 +65,7 @@ src/
     HUD.jsx, SkillTree.jsx, ModuleView.jsx, MissionView.jsx, Workbench.jsx
     FlowCanvas.jsx        interactive SVG architecture + packet animation
     Inspector.jsx, Quiz.jsx, Toasts.jsx, ui.jsx
-    labs/                 the five console lab simulators
+    labs/                 the ten console lab simulators
 ```
 
 ## Disclaimer

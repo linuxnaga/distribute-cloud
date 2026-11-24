@@ -14,13 +14,16 @@ export function Btn({ children, variant = 'primary', className = '', ...props })
   );
 }
 
-export function Field({ label, hint, children }) {
+// Use `group` when the field holds several controls (buttons, checkboxes),
+// so a wrapping <label> does not hijack their accessible names.
+export function Field({ label, hint, children, group = false }) {
+  const Tag = group ? 'div' : 'label';
   return (
-    <label className="block">
+    <Tag className="block" {...(group ? { role: 'group', 'aria-label': label } : {})}>
       <span className="mb-1 block text-xs font-semibold text-slate-300">{label}</span>
       {children}
       {hint && <span className="mt-1 block text-[11px] text-slate-500">{hint}</span>}
-    </label>
+    </Tag>
   );
 }
 
