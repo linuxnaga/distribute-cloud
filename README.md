@@ -57,6 +57,12 @@ Each module has key concepts, an objectives checklist, a split-screen workbench 
 - Rate Limiting & L3/L4 DDoS (Module 3): pick per-user limits that stop a credential stuffer and scraper but never a NAT office, and know when the RE handles a SYN flood for you
 - Client-Side Defense (Module 3): inventory checkout scripts, block a card skimmer, and switch to mitigation
 - Alert Routing (Module 4): send each severity to the right receiver and group repeated alerts to stop storms
+- Azure VNet Site (Module 1): place a zone-redundant two-interface CE in a hub VNet and steer spokes through it
+- BGP Route Advertisement (Module 2): eBGP from the CE inside interface to both DC core routers, advertising only the VIP /32 and withdrawing it when origins fail
+- TCP Load Balancer (Module 2): publish an MQTT broker globally with SNI passthrough so the broker keeps device-certificate auth
+- WAF False-Positive Tuning (Module 3): fix false positives with path-and-parameter exclusions while real attacks stay blocked
+- Blindfold Secrets (Module 4): keep a DB password and TLS private key encrypted end to end, unsealed only on approved sites
+- vK8s Autoscaling (Module 4): size requests, min/max replicas, target CPU and scale-down stabilization for Black Friday
 
 **Missions**
 1. Zero-Trust Multi-Cloud App Delivery: publish a private on-prem app globally without a public IP
@@ -75,7 +81,7 @@ src/
     HUD.jsx, SkillTree.jsx, ModuleView.jsx, MissionView.jsx, Workbench.jsx
     FlowCanvas.jsx        interactive SVG architecture + packet animation
     Inspector.jsx, Quiz.jsx, Toasts.jsx, ui.jsx
-    labs/                 the twenty console lab simulators
+    labs/                 the 26 console lab simulators
 ```
 
 ## Disclaimer

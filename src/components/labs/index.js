@@ -18,6 +18,7 @@ import SegmentationLab from './SegmentationLab.jsx';
 import RateLimitLab from './RateLimitLab.jsx';
 import ClientSideLab from './ClientSideLab.jsx';
 import AlertRoutingLab from './AlertRoutingLab.jsx';
+import { AzureSiteLab, BgpLab, TcpLbLab, WafTuningLab, BlindfoldLab, AutoscaleLab } from './round5.jsx';
 
 export const LABS = {
   site: { label: 'Site & Tunnel Registration', C: SiteLab },
@@ -40,4 +41,10 @@ export const LABS = {
   ratelimit: { label: 'Rate Limiting & L3/L4 DDoS', C: RateLimitLab },
   csd: { label: 'Client-Side Defense', C: ClientSideLab },
   alerts: { label: 'Alert Routing', C: AlertRoutingLab },
+  azure: { label: 'Azure VNet Site', C: AzureSiteLab },
+  bgp: { label: 'BGP Route Advertisement', C: BgpLab },
+  tcp: { label: 'TCP Load Balancer', C: TcpLbLab },
+  waftune: { label: 'WAF False-Positive Tuning', C: WafTuningLab },
+  blindfold: { label: 'Blindfold Secrets', C: BlindfoldLab },
+  hpa: { label: 'vK8s Autoscaling', C: AutoscaleLab },
 };
