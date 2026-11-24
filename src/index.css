@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0b1120;
+  --color-panel: #111a2e;
+  --color-panel2: #16213a;
+  --color-line: #243250;
+  --color-f5: #e4002b;
+  --color-coral: #ff5a5f;
+  --color-cyan: #06b6d4;
+  --color-emerald: #10b981;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html, body, #root { min-height: 100%; }
+body {
+  margin: 0;
+  color: #e2e8f0;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(228,0,43,0.10), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(6,182,212,0.10), transparent 60%),
+    #0b1120;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(148,163,184,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148,163,184,0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.scroll-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+.scroll-thin::-webkit-scrollbar-thumb { background: #243250; border-radius: 9999px; }
+
+@keyframes dash { to { stroke-dashoffset: -24; } }
+.flow-dash { stroke-dasharray: 6 6; animation: dash 1.2s linear infinite; }
+.flow-dash-slow { stroke-dasharray: 2 6; animation: dash 3s linear infinite; }
+
+@keyframes pulse-ring { 0% { r: 4; opacity: .9 } 100% { r: 22; opacity: 0 } }
+.burst { animation: pulse-ring .9s ease-out infinite; }
+
+@keyframes toast-in { from { transform: translateY(12px); opacity: 0 } to { transform: none; opacity: 1 } }
+.toast-in { animation: toast-in .25s ease-out; }
+
+@keyframes shimmer { 0% { background-position: -200% 0 } 100% { background-position: 200% 0 } }
+.xp-shimmer {
+  background-image: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2.4s linear infinite;
+}
+
+@keyframes blink { 50% { opacity: 0 } }
+.caret { animation: blink 1s step-end infinite; }
