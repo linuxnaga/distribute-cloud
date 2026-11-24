@@ -63,6 +63,12 @@ Each module has key concepts, an objectives checklist, a split-screen workbench 
 - WAF False-Positive Tuning (Module 3): fix false positives with path-and-parameter exclusions while real attacks stay blocked
 - Blindfold Secrets (Module 4): keep a DB password and TLS private key encrypted end to end, unsealed only on approved sites
 - vK8s Autoscaling (Module 4): size requests, min/max replicas, target CPU and scale-down stabilization for Black Friday
+- Virtual Sites & Labels (Module 1): write label selectors that match exactly the intended sites
+- HTTP LB Routing (Module 2): header and path routes, prefix rewrite, HTTP→HTTPS and retired-URL redirects
+- Origin Health & Endpoint Selection (Module 2): HTTP health checks, fast thresholds and local-preferred endpoint selection
+- Data Guard & Sensitive Data (Module 3): mask card and ID numbers in responses, exclude the payment callback, discover other leaks
+- IP Reputation & Trusted Clients (Module 3): block bad-IP categories and scope trusted-client exceptions by IP, check and expiry
+- Canary Releases (Module 4): staff header route, 95/5 weights, RELT promotion gate and instant rollback
 
 **Missions**
 1. Zero-Trust Multi-Cloud App Delivery: publish a private on-prem app globally without a public IP
@@ -81,7 +87,7 @@ src/
     HUD.jsx, SkillTree.jsx, ModuleView.jsx, MissionView.jsx, Workbench.jsx
     FlowCanvas.jsx        interactive SVG architecture + packet animation
     Inspector.jsx, Quiz.jsx, Toasts.jsx, ui.jsx
-    labs/                 the 26 console lab simulators
+    labs/                 the 32 console lab simulators
 ```
 
 ## Disclaimer

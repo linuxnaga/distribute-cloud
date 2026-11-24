@@ -20,6 +20,8 @@ import ClientSideLab from './ClientSideLab.jsx';
 import AlertRoutingLab from './AlertRoutingLab.jsx';
 import { AzureSiteLab, BgpLab, TcpLbLab, WafTuningLab, BlindfoldLab, AutoscaleLab } from './round5.jsx';
 
+import { VirtualSiteLab, RoutesLab, HealthLab, DataGuardLab, ThreatIntelLab, CanaryLab } from './round6.jsx';
+
 export const LABS = {
   site: { label: 'Site & Tunnel Registration', C: SiteLab },
   lb: { label: 'HTTP LB & Origin Pool Wizard', C: LoadBalancerLab },
@@ -47,4 +49,10 @@ export const LABS = {
   waftune: { label: 'WAF False-Positive Tuning', C: WafTuningLab },
   blindfold: { label: 'Blindfold Secrets', C: BlindfoldLab },
   hpa: { label: 'vK8s Autoscaling', C: AutoscaleLab },
+  vsite: { label: 'Virtual Sites & Labels', C: VirtualSiteLab },
+  routes: { label: 'HTTP LB Routing', C: RoutesLab },
+  health: { label: 'Origin Health & Endpoint Selection', C: HealthLab },
+  dataguard: { label: 'Data Guard & Sensitive Data', C: DataGuardLab },
+  threatintel: { label: 'IP Reputation & Trusted Clients', C: ThreatIntelLab },
+  canary: { label: 'Canary Releases', C: CanaryLab },
 };

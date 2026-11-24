@@ -27,6 +27,7 @@ export const MODULES = [
       { id: 'rbac', label: 'Namespace RBAC' },
       { id: 'upgrade', label: 'CE Upgrade Lifecycle' },
       { id: 'azure', label: 'Azure VNet Site' },
+      { id: 'vsite', label: 'Virtual Sites & Labels' },
     ],
   },
   {
@@ -57,6 +58,8 @@ export const MODULES = [
       { id: 'segments', label: 'Network Segmentation' },
       { id: 'bgp', label: 'BGP Route Advertisement' },
       { id: 'tcp', label: 'TCP Load Balancer' },
+      { id: 'routes', label: 'HTTP LB Routing' },
+      { id: 'health', label: 'Origin Health & Endpoint Selection' },
     ],
   },
   {
@@ -87,6 +90,8 @@ export const MODULES = [
       { id: 'ratelimit', label: 'Rate Limiting & L3/L4 DDoS' },
       { id: 'csd', label: 'Client-Side Defense' },
       { id: 'waftune', label: 'WAF False-Positive Tuning' },
+      { id: 'dataguard', label: 'Data Guard & Sensitive Data' },
+      { id: 'threatintel', label: 'IP Reputation & Trusted Clients' },
     ],
   },
   {
@@ -116,6 +121,7 @@ export const MODULES = [
       { id: 'alerts', label: 'Alert Routing' },
       { id: 'blindfold', label: 'Blindfold Secrets' },
       { id: 'hpa', label: 'vK8s Autoscaling' },
+      { id: 'canary', label: 'Canary Releases' },
     ],
   },
 ];
