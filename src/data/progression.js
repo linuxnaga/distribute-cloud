@@ -4,9 +4,9 @@
 export const RANKS = [
   { level: 1, title: 'Edge Explorer', minXp: 0 },
   { level: 2, title: 'Tunnel Technician', minXp: 250 },
-  { level: 3, title: 'Mesh Weaver', minXp: 750 },
-  { level: 4, title: 'Edge Sentinel', minXp: 1450 },
-  { level: 5, title: 'Distributed Cloud Architect', minXp: 2300 },
+  { level: 3, title: 'Mesh Weaver', minXp: 800 },
+  { level: 4, title: 'Edge Sentinel', minXp: 1600 },
+  { level: 5, title: 'Distributed Cloud Architect', minXp: 2550 },
 ];
 
 export const BADGES = [
@@ -60,6 +60,7 @@ export const TASKS = [
   { id: 'm1.gcp', module: 'm1', kind: 'lab', xp: 60, label: 'Deploy an HA GCP cloud CE site' },
   { id: 'm1.rbac', module: 'm1', kind: 'lab', xp: 60, label: 'Pass a least-privilege namespace access review' },
   { id: 'm1.upgrade', module: 'm1', kind: 'lab', xp: 60, label: 'Plan a zero-downtime CE fleet upgrade' },
+  { id: 'm1.azure', module: 'm1', kind: 'lab', xp: 60, label: 'Deploy a zone-redundant Azure hub CE' },
 
   // Module 2
   { id: 'm2.flow.ew', module: 'm2', kind: 'explore', xp: 20, label: 'Watch an East-West flow from AWS to On-Prem' },
@@ -73,6 +74,8 @@ export const TASKS = [
   { id: 'm2.fw', module: 'm2', kind: 'lab', xp: 60, label: 'Build a least-privilege Network Firewall policy' },
   { id: 'm2.gslb', module: 'm2', kind: 'lab', xp: 60, label: 'Route DNS to the nearest healthy region with fast failover' },
   { id: 'm2.segments', module: 'm2', kind: 'lab', xp: 60, label: 'Segment prod, dev, PCI and shared services' },
+  { id: 'm2.bgp', module: 'm2', kind: 'lab', xp: 60, label: 'Advertise a VIP to DC routers with BGP' },
+  { id: 'm2.tcp', module: 'm2', kind: 'lab', xp: 60, label: 'Publish a non-HTTP app with a TCP load balancer' },
 
   // Module 3
   { id: 'm3.layer.waap', module: 'm3', kind: 'explore', xp: 20, label: 'Watch attack packets die at the RE WAAP shield' },
@@ -87,6 +90,7 @@ export const TASKS = [
   { id: 'm3.mud', module: 'm3', kind: 'lab', xp: 60, label: 'Tune Malicious User Detection with zero false positives' },
   { id: 'm3.ratelimit', module: 'm3', kind: 'lab', xp: 60, label: 'Set rate limits that stop abusers, not customers' },
   { id: 'm3.csd', module: 'm3', kind: 'lab', xp: 60, label: 'Stop a checkout card skimmer with Client-Side Defense' },
+  { id: 'm3.waftune', module: 'm3', kind: 'lab', xp: 60, label: 'Fix WAF false positives without opening holes' },
 
   // Module 4
   { id: 'm4.flow.relt', module: 'm4', kind: 'explore', xp: 20, label: 'Spot a faulty edge on the canvas RELT overlay' },
@@ -97,6 +101,8 @@ export const TASKS = [
   { id: 'm4.synth', module: 'm4', kind: 'lab', xp: 60, label: 'Find and fix a regional outage with Synthetic Monitoring' },
   { id: 'm4.cdn', module: 'm4', kind: 'lab', xp: 60, label: 'Cache at the edge with no stale prices or data leaks' },
   { id: 'm4.alerts', module: 'm4', kind: 'lab', xp: 60, label: 'Route alerts by severity and stop alert storms' },
+  { id: 'm4.blindfold', module: 'm4', kind: 'lab', xp: 60, label: 'Keep secrets out of plaintext with Blindfold' },
+  { id: 'm4.hpa', module: 'm4', kind: 'lab', xp: 60, label: 'Autoscale a vK8s workload for peak and idle' },
 
   // Knowledge checks: 5 questions × 20 XP per module (ids generated in quizzes.js)
   ...['m1', 'm2', 'm3', 'm4'].flatMap((m) =>

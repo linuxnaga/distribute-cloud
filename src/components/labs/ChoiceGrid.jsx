@@ -8,7 +8,7 @@ export default function ChoiceGrid({ items, values, onChange, checked }) {
       {items.map((it) => {
         const ok = it.ok(values[it.id]);
         return (
-          <div key={it.id} className="grid items-start gap-2 rounded-lg border border-line bg-panel/60 p-2.5 sm:grid-cols-[1fr_220px]">
+          <div key={it.id} className="grid items-start gap-2 rounded-lg border border-line bg-panel/60 p-2.5 sm:grid-cols-[1fr_280px]">
             <div>
               <div className="flex items-center gap-1.5 text-sm font-semibold text-white">
                 {it.title}

@@ -26,6 +26,7 @@ export const MODULES = [
       { id: 'gcp', label: 'GCP Cloud Site Deploy' },
       { id: 'rbac', label: 'Namespace RBAC' },
       { id: 'upgrade', label: 'CE Upgrade Lifecycle' },
+      { id: 'azure', label: 'Azure VNet Site' },
     ],
   },
   {
@@ -54,6 +55,8 @@ export const MODULES = [
       { id: 'firewall', label: 'Network Connector & Firewall' },
       { id: 'gslb', label: 'DNS Load Balancing (GSLB)' },
       { id: 'segments', label: 'Network Segmentation' },
+      { id: 'bgp', label: 'BGP Route Advertisement' },
+      { id: 'tcp', label: 'TCP Load Balancer' },
     ],
   },
   {
@@ -83,6 +86,7 @@ export const MODULES = [
       { id: 'mud', label: 'Malicious User Detection' },
       { id: 'ratelimit', label: 'Rate Limiting & L3/L4 DDoS' },
       { id: 'csd', label: 'Client-Side Defense' },
+      { id: 'waftune', label: 'WAF False-Positive Tuning' },
     ],
   },
   {
@@ -110,6 +114,8 @@ export const MODULES = [
       { id: 'synthetic', label: 'Synthetic Monitoring' },
       { id: 'cdn', label: 'CDN & Caching' },
       { id: 'alerts', label: 'Alert Routing' },
+      { id: 'blindfold', label: 'Blindfold Secrets' },
+      { id: 'hpa', label: 'vK8s Autoscaling' },
     ],
   },
 ];
