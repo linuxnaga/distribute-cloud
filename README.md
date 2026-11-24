@@ -52,6 +52,11 @@ Each module has key concepts, an objectives checklist, a split-screen workbench 
 - mTLS & Client Certs (Module 3): require partner certificates from one CA and forward client identity to the origin
 - Malicious User Detection (Module 3): choose user identification and per-threat-level mitigations with zero false positives
 - CDN & Caching (Module 4): set per-path TTLs for high offload without stale prices or cached personal data
+- CE Upgrade Lifecycle (Module 1): plan a zero-downtime fleet upgrade (canary, pre-checks, rolling clusters, drained single nodes)
+- Network Segmentation (Module 2): build a prod / dev / PCI / shared-services connectivity matrix and pass connectivity tests
+- Rate Limiting & L3/L4 DDoS (Module 3): pick per-user limits that stop a credential stuffer and scraper but never a NAT office, and know when the RE handles a SYN flood for you
+- Client-Side Defense (Module 3): inventory checkout scripts, block a card skimmer, and switch to mitigation
+- Alert Routing (Module 4): send each severity to the right receiver and group repeated alerts to stop storms
 
 **Missions**
 1. Zero-Trust Multi-Cloud App Delivery: publish a private on-prem app globally without a public IP
@@ -70,7 +75,7 @@ src/
     HUD.jsx, SkillTree.jsx, ModuleView.jsx, MissionView.jsx, Workbench.jsx
     FlowCanvas.jsx        interactive SVG architecture + packet animation
     Inspector.jsx, Quiz.jsx, Toasts.jsx, ui.jsx
-    labs/                 the fifteen console lab simulators
+    labs/                 the twenty console lab simulators
 ```
 
 ## Disclaimer
