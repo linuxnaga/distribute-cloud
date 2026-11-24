@@ -30,14 +30,15 @@ export default function Workbench({ canvasModule, labIds }) {
       <div className="flex min-w-0 flex-col gap-2">
         {labIds.length > 1 && (
           <div className="flex flex-wrap gap-1.5" role="tablist">
-            {labIds.map((id) => (
+            {labIds.map((id, i) => (
               <button
                 key={id}
                 role="tab"
                 aria-selected={lab === id}
                 onClick={() => setLab(id)}
-                className={`rounded-md border px-3 py-1.5 text-xs font-semibold ${lab === id ? 'border-f5 bg-f5/15 text-white' : 'border-line text-slate-400 hover:text-white'}`}
+                className={`rounded-md border px-2 py-1 text-[11px] font-semibold ${lab === id ? 'border-f5 bg-f5/15 text-white' : 'border-line text-slate-400 hover:text-white'}`}
               >
+                <span className="mr-1 font-mono text-slate-500">{i + 1}</span>
                 {LABS[id].label}
               </button>
             ))}

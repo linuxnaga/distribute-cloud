@@ -22,6 +22,8 @@ import { AzureSiteLab, BgpLab, TcpLbLab, WafTuningLab, BlindfoldLab, AutoscaleLa
 
 import { VirtualSiteLab, RoutesLab, HealthLab, DataGuardLab, ThreatIntelLab, CanaryLab } from './round6.jsx';
 
+import { ApiCredsLab, TgwLab, CampaignsLab, BotAdvLab, LogsLab, StorageLab } from './round7.jsx';
+
 export const LABS = {
   site: { label: 'Site & Tunnel Registration', C: SiteLab },
   lb: { label: 'HTTP LB & Origin Pool Wizard', C: LoadBalancerLab },
@@ -55,4 +57,10 @@ export const LABS = {
   dataguard: { label: 'Data Guard & Sensitive Data', C: DataGuardLab },
   threatintel: { label: 'IP Reputation & Trusted Clients', C: ThreatIntelLab },
   canary: { label: 'Canary Releases', C: CanaryLab },
+  apicreds: { label: 'API Credentials & Automation', C: ApiCredsLab },
+  tgw: { label: 'AWS Transit Gateway Site', C: TgwLab },
+  campaigns: { label: 'Signatures & Threat Campaigns', C: CampaignsLab },
+  botadv: { label: 'Bot Defense: Endpoints & Mobile', C: BotAdvLab },
+  logs: { label: 'Request Log Investigation', C: LogsLab },
+  storage: { label: 'Stateful Edge Workloads', C: StorageLab },
 };

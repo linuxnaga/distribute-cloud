@@ -28,6 +28,7 @@ export const MODULES = [
       { id: 'upgrade', label: 'CE Upgrade Lifecycle' },
       { id: 'azure', label: 'Azure VNet Site' },
       { id: 'vsite', label: 'Virtual Sites & Labels' },
+      { id: 'apicreds', label: 'API Credentials & Automation' },
     ],
   },
   {
@@ -60,6 +61,7 @@ export const MODULES = [
       { id: 'tcp', label: 'TCP Load Balancer' },
       { id: 'routes', label: 'HTTP LB Routing' },
       { id: 'health', label: 'Origin Health & Endpoint Selection' },
+      { id: 'tgw', label: 'AWS Transit Gateway Site' },
     ],
   },
   {
@@ -92,6 +94,8 @@ export const MODULES = [
       { id: 'waftune', label: 'WAF False-Positive Tuning' },
       { id: 'dataguard', label: 'Data Guard & Sensitive Data' },
       { id: 'threatintel', label: 'IP Reputation & Trusted Clients' },
+      { id: 'campaigns', label: 'Signatures & Threat Campaigns' },
+      { id: 'botadv', label: 'Bot Defense: Endpoints & Mobile' },
     ],
   },
   {
@@ -122,6 +126,8 @@ export const MODULES = [
       { id: 'blindfold', label: 'Blindfold Secrets' },
       { id: 'hpa', label: 'vK8s Autoscaling' },
       { id: 'canary', label: 'Canary Releases' },
+      { id: 'logs', label: 'Request Log Investigation' },
+      { id: 'storage', label: 'Stateful Edge Workloads' },
     ],
   },
 ];
