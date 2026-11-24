@@ -4,9 +4,9 @@
 export const RANKS = [
   { level: 1, title: 'Edge Explorer', minXp: 0 },
   { level: 2, title: 'Tunnel Technician', minXp: 250 },
-  { level: 3, title: 'Mesh Weaver', minXp: 900 },
-  { level: 4, title: 'Edge Sentinel', minXp: 1800 },
-  { level: 5, title: 'Distributed Cloud Architect', minXp: 2850 },
+  { level: 3, title: 'Mesh Weaver', minXp: 1000 },
+  { level: 4, title: 'Edge Sentinel', minXp: 2000 },
+  { level: 5, title: 'Distributed Cloud Architect', minXp: 3100 },
 ];
 
 export const BADGES = [
@@ -62,6 +62,7 @@ export const TASKS = [
   { id: 'm1.upgrade', module: 'm1', kind: 'lab', xp: 60, label: 'Plan a zero-downtime CE fleet upgrade' },
   { id: 'm1.azure', module: 'm1', kind: 'lab', xp: 60, label: 'Deploy a zone-redundant Azure hub CE' },
   { id: 'm1.vsite', module: 'm1', kind: 'lab', xp: 60, label: 'Target sites precisely with label selectors' },
+  { id: 'm1.api', module: 'm1', kind: 'lab', xp: 60, label: 'Automate XC safely with scoped, expiring credentials' },
 
   // Module 2
   { id: 'm2.flow.ew', module: 'm2', kind: 'explore', xp: 20, label: 'Watch an East-West flow from AWS to On-Prem' },
@@ -79,6 +80,7 @@ export const TASKS = [
   { id: 'm2.tcp', module: 'm2', kind: 'lab', xp: 60, label: 'Publish a non-HTTP app with a TCP load balancer' },
   { id: 'm2.routes', module: 'm2', kind: 'lab', xp: 60, label: 'Route requests by path and header, with redirects and rewrites' },
   { id: 'm2.health', module: 'm2', kind: 'lab', xp: 60, label: 'Detect sick origins fast and keep users on nearby ones' },
+  { id: 'm2.tgw', module: 'm2', kind: 'lab', xp: 60, label: 'Connect 12 VPCs through one AWS TGW site' },
 
   // Module 3
   { id: 'm3.layer.waap', module: 'm3', kind: 'explore', xp: 20, label: 'Watch attack packets die at the RE WAAP shield' },
@@ -96,6 +98,8 @@ export const TASKS = [
   { id: 'm3.waftune', module: 'm3', kind: 'lab', xp: 60, label: 'Fix WAF false positives without opening holes' },
   { id: 'm3.dataguard', module: 'm3', kind: 'lab', xp: 60, label: 'Mask leaked card and ID numbers at the edge' },
   { id: 'm3.threatintel', module: 'm3', kind: 'lab', xp: 60, label: 'Block bad IPs and scope trusted-client exceptions narrowly' },
+  { id: 'm3.campaigns', module: 'm3', kind: 'lab', xp: 60, label: 'Stage new signatures and block active threat campaigns' },
+  { id: 'm3.botadv', module: 'm3', kind: 'lab', xp: 60, label: 'Protect every abused endpoint, including the mobile app' },
 
   // Module 4
   { id: 'm4.flow.relt', module: 'm4', kind: 'explore', xp: 20, label: 'Spot a faulty edge on the canvas RELT overlay' },
@@ -109,6 +113,8 @@ export const TASKS = [
   { id: 'm4.blindfold', module: 'm4', kind: 'lab', xp: 60, label: 'Keep secrets out of plaintext with Blindfold' },
   { id: 'm4.hpa', module: 'm4', kind: 'lab', xp: 60, label: 'Autoscale a vK8s workload for peak and idle' },
   { id: 'm4.canary', module: 'm4', kind: 'lab', xp: 60, label: 'Run a RELT-gated canary release and roll back a bad build' },
+  { id: 'm4.logs', module: 'm4', kind: 'lab', xp: 60, label: 'Find the root cause of 503s in request logs' },
+  { id: 'm4.storage', module: 'm4', kind: 'lab', xp: 60, label: 'Run stateful workloads on an App Stack site' },
 
   // Knowledge checks: 5 questions × 20 XP per module (ids generated in quizzes.js)
   ...['m1', 'm2', 'm3', 'm4'].flatMap((m) =>

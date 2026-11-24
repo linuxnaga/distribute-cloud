@@ -45,7 +45,7 @@ export default function ModuleView({ module }) {
         </div>
         <div className="rounded-xl border border-line bg-panel/70 p-4">
           <div className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-400">Module objectives</div>
-          <ul className="space-y-1.5">
+          <ul className="max-h-[360px] space-y-1.5 overflow-y-auto pr-1 scroll-thin">
             {tasks.map((t) => (
               <li key={t.id} className="flex items-start gap-2 text-xs">
                 {state.awarded[t.id] ? <CheckCircle2 className="mt-px h-3.5 w-3.5 shrink-0 text-emerald" /> : <Circle className="mt-px h-3.5 w-3.5 shrink-0 text-slate-600" />}

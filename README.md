@@ -69,6 +69,12 @@ Each module has key concepts, an objectives checklist, a split-screen workbench 
 - Data Guard & Sensitive Data (Module 3): mask card and ID numbers in responses, exclude the payment callback, discover other leaks
 - IP Reputation & Trusted Clients (Module 3): block bad-IP categories and scope trusted-client exceptions by IP, check and expiry
 - Canary Releases (Module 4): staff header route, 95/5 weights, RELT promotion gate and instant rollback
+- API Credentials & Automation (Module 1): scoped service credentials for Terraform CI, certificates for vesctl, expiry and rotation
+- AWS Transit Gateway Site (Module 2): one TGW site for 12 VPCs with east-west inspection through the CE
+- Signatures & Threat Campaigns (Module 3): accuracy levels, signature staging, threat campaigns and patch-vs-WAF
+- Bot Defense: Endpoints & Mobile (Module 3): protected endpoints, mitigation actions, the mobile SDK and allowed good bots
+- Request Log Investigation (Module 4): filter, group and read response flags to find a failing origin instance
+- Stateful Edge Workloads (Module 4): storage classes, StatefulSets with PVCs, site-local placement and backups
 
 **Missions**
 1. Zero-Trust Multi-Cloud App Delivery: publish a private on-prem app globally without a public IP
@@ -87,7 +93,7 @@ src/
     HUD.jsx, SkillTree.jsx, ModuleView.jsx, MissionView.jsx, Workbench.jsx
     FlowCanvas.jsx        interactive SVG architecture + packet animation
     Inspector.jsx, Quiz.jsx, Toasts.jsx, ui.jsx
-    labs/                 the 32 console lab simulators
+    labs/                 the 38 console lab simulators
 ```
 
 ## Disclaimer
