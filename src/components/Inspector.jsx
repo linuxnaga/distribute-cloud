@@ -1,7 +1,9 @@
-import { Info, Route, Gauge, X } from 'lucide-react';
+import { BookOpen, Info, Route, Gauge, X } from 'lucide-react';
 import { COMPONENTS } from '../data/curriculum.js';
 import { useGame } from '../state/GameContext.jsx';
 import { attackBlockRate } from '../sim/security.js';
+import { NODE_REF, REF_BY_ID } from '../data/reference.js';
+import { useReference } from '../state/ReferenceContext.jsx';
 
 const TUN = { aws: 2, azure: 2, onprem: 2 };
 
@@ -33,12 +35,19 @@ function resolve(token, sim) {
 
 export default function Inspector({ nodeId, onClose }) {
   const { state } = useGame();
+  const { openRef } = useReference();
   const c = COMPONENTS[nodeId];
+  const ref = REF_BY_ID[NODE_REF[nodeId]];
   if (!c) {
     return (
       <div className="flex items-center gap-3 rounded-xl border border-dashed border-line bg-panel/40 p-4 text-sm text-slate-400">
         <Info className="h-5 w-5 shrink-0 text-cyan" />
-        Click any component in the diagram (an RE PoP, a CE cluster, the HTTP LB, the Origin Pool, the WAAP shield or a workload) to open its inspector card.
+        <span className="flex-1">
+          Click any component in the diagram (an RE PoP, a CE cluster, the HTTP LB, the Origin Pool, the WAAP shield or a workload) to open its inspector card.
+        </span>
+        <button onClick={() => openRef()} className="flex shrink-0 items-center gap-1 rounded-md border border-cyan/40 px-2 py-1 text-xs font-semibold text-cyan hover:bg-cyan/10">
+          <BookOpen className="h-3.5 w-3.5" /> All components
+        </button>
       </div>
     );
   }
@@ -53,6 +62,23 @@ export default function Inspector({ nodeId, onClose }) {
           <X className="h-4 w-4" />
         </button>
       </div>
+      {ref && (
+        <div className="mt-3 rounded-lg border border-line bg-ink/60 p-3 text-sm">
+          <div className="mb-1 text-xs font-semibold text-slate-300">In plain words</div>
+          <p className="text-slate-300">{ref.short}</p>
+          <ul className="mt-2 grid gap-x-4 gap-y-1 sm:grid-cols-2">
+            {ref.does.map((d) => (
+              <li key={d} className="flex gap-2 text-xs text-slate-400">
+                <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-cyan" />
+                {d}
+              </li>
+            ))}
+          </ul>
+          <button onClick={() => openRef(ref.id)} className="mt-2 flex items-center gap-1 text-xs font-semibold text-cyan hover:underline">
+            <BookOpen className="h-3.5 w-3.5" /> Learn more about {ref.name.replace(/ \(.*\)$/, '')}
+          </button>
+        </div>
+      )}
       <div className="mt-3 grid gap-3 text-sm md:grid-cols-2">
         <div>
           <div className="mb-1 flex items-center gap-1.5 text-xs font-semibold text-slate-300">

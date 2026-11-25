@@ -2,12 +2,14 @@ import { BookOpen, CheckCircle2, Circle, FlaskConical, HelpCircle } from 'lucide
 import { useState } from 'react';
 import { TASKS } from '../data/progression.js';
 import { useGame } from '../state/GameContext.jsx';
+import { useReference } from '../state/ReferenceContext.jsx';
 import { Icon } from './icons.jsx';
 import Quiz from './Quiz.jsx';
 import Workbench from './Workbench.jsx';
 
 export default function ModuleView({ module }) {
   const { state } = useGame();
+  const { openRef } = useReference();
   const [tab, setTab] = useState('lab');
   const [showConcepts, setShowConcepts] = useState(true);
   const tasks = TASKS.filter((t) => t.module === module.id && t.kind !== 'quiz');
@@ -29,9 +31,14 @@ export default function ModuleView({ module }) {
             </div>
           </div>
           <p className="mt-3 text-sm leading-relaxed text-slate-300">{module.summary}</p>
-          <button onClick={() => setShowConcepts((v) => !v)} className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-cyan hover:underline">
-            <BookOpen className="h-3.5 w-3.5" /> {showConcepts ? 'Hide' : 'Show'} key concepts
-          </button>
+          <div className="mt-3 flex flex-wrap items-center gap-4">
+            <button onClick={() => setShowConcepts((v) => !v)} className="flex items-center gap-1.5 text-xs font-semibold text-cyan hover:underline">
+              <BookOpen className="h-3.5 w-3.5" /> {showConcepts ? 'Hide' : 'Show'} key concepts
+            </button>
+            <button onClick={() => openRef()} className="flex items-center gap-1.5 text-xs font-semibold text-slate-300 hover:text-white hover:underline">
+              <BookOpen className="h-3.5 w-3.5" /> Open the full component reference
+            </button>
+          </div>
           {showConcepts && (
             <div className="mt-2 grid gap-2 sm:grid-cols-2 2xl:grid-cols-3">
               {module.concepts.map((c) => (

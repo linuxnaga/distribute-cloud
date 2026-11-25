@@ -4,6 +4,7 @@ import HUD from './components/HUD.jsx';
 import MissionView from './components/MissionView.jsx';
 import ModuleView from './components/ModuleView.jsx';
 import SkillTree from './components/SkillTree.jsx';
+import ReferenceDrawer from './components/ReferenceDrawer.jsx';
 import Toasts from './components/Toasts.jsx';
 import { MODULE_BY_ID } from './data/curriculum.js';
 import { useGame } from './state/GameContext.jsx';
@@ -44,6 +45,7 @@ export default function App() {
           </div>
         </div>
       )}
+      <ReferenceDrawer />
       <Toasts />
     </div>
   );
