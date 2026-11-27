@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useGame } from '../state/GameContext.jsx';
 import FlowCanvas from './FlowCanvas.jsx';
+import CanvasGuide from './CanvasGuide.jsx';
 import Inspector from './Inspector.jsx';
+import LabGuide from './LabGuide.jsx';
 import { LABS } from './labs/index.js';
 
 // Split-screen: flow canvas + inspector on the left, console lab on the right.
@@ -26,6 +28,7 @@ export default function Workbench({ canvasModule, labIds }) {
           />
         </div>
         <Inspector nodeId={selected} onClose={() => setSelected(null)} />
+        <CanvasGuide moduleId={canvasModule.id} />
       </div>
       <div className="flex min-w-0 flex-col gap-2">
         {labIds.length > 1 && (
@@ -44,6 +47,7 @@ export default function Workbench({ canvasModule, labIds }) {
             ))}
           </div>
         )}
+        <LabGuide labId={lab} label={LABS[lab].label} />
         <div className="h-[640px] xl:h-[760px]">
           <Lab key={lab} />
         </div>

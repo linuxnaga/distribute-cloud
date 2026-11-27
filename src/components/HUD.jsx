@@ -1,11 +1,13 @@
-import { Award, RotateCcw, Target, Zap } from 'lucide-react';
+import { Award, BookOpen, RotateCcw, Target, Zap } from 'lucide-react';
 import { useState } from 'react';
 import { BADGES, RANKS, TOTAL_XP, badgeUnlocked, rankFor } from '../data/progression.js';
 import { useGame } from '../state/GameContext.jsx';
+import { useReference } from '../state/ReferenceContext.jsx';
 import { Icon } from './icons.jsx';
 
 export default function HUD() {
   const { state, resetAll } = useGame();
+  const { openRef } = useReference();
   const [confirmReset, setConfirmReset] = useState(false);
   const { current, next } = rankFor(state.xp);
   const span = next ? next.minXp - current.minXp : 1;
@@ -83,6 +85,14 @@ export default function HUD() {
             );
           })}
         </div>
+
+        <button
+          onClick={() => openRef()}
+          className="flex items-center gap-1.5 rounded-md border border-cyan/50 bg-cyan/10 px-2.5 py-1.5 text-xs font-semibold text-cyan transition hover:bg-cyan/20"
+          title="What every F5 XC component does"
+        >
+          <BookOpen className="h-3.5 w-3.5" /> Component Reference
+        </button>
 
         <button
           onClick={() => {

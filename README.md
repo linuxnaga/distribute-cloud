@@ -15,6 +15,13 @@ npm run preview   # serve the production build
 
 The build uses relative asset paths, so `dist/` can be hosted on any static host (GitHub Pages, S3, an F5 XC origin, etc.).
 
+## Lab guides & component reference
+
+- Every lab has a **How to run this lab** panel above the console: objective, prerequisites, numbered steps, what success looks like, its XP objectives, hints, a hidden solution, and chips for the components it uses.
+- The **Component Reference** button in the header opens a searchable glossary of 52 F5 XC building blocks (RE, CE, tunnels, HTTP LB, origin pool, WAF, Bot Defense, vK8s, RELT and more): what each one is, what it does, an analogy, where you configure it and which labs practise it. Inspector cards link straight to it.
+- **How to use the diagram** (under the canvas) explains every flow and layer toggle and the module's canvas exercises.
+- [docs/LABS.md](docs/LABS.md) is the same content as a single printable guide. It is generated from `src/data/guides.js` and `src/data/reference.js`: run `npm run docs` after editing them (the script also fails if any lab lacks a guide or a guide points at an unknown task or component).
+
 ## What's inside
 
 **Player progression (HUD)**
